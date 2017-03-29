@@ -3,6 +3,7 @@
 namespace Laraviet\LaravelBook;
 
 use Illuminate\Support\ServiceProvider;
+use Laraviet\LaravelBook\Helpers\Constants;
 use Laraviet\DDDBook\DDDBookServiceProvider;
 use Laraviet\LaravelBook\Providers\RouteServiceProvider as BookRouteServiceProvider;
 
@@ -15,15 +16,15 @@ class LaravelBookServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $package_name = 'laravel-book';
+        $package_name = Constants::PACKAGE;
 
         //routes
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         //view
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel-book');
+        $this->loadViewsFrom(__DIR__.'/resources/views', $package_name);
         $this->publishes([
-                __DIR__.'/resources/views' => resource_path('views/vendor/laravel-book'),
+                __DIR__.'/resources/views' => resource_path('views/vendor/' . $package_name),
             ]);
 
         //migrations
