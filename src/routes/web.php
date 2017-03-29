@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', "BookController@index");
-Route::get('books/edit/{id}', "BookController@edit");
-Route::post('books/{id}', "BookController@update");
+Route::resource('books', 'BookController');
