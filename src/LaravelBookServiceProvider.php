@@ -3,6 +3,8 @@
 namespace Laraviet\LaravelBook;
 
 use Illuminate\Support\ServiceProvider;
+use Laraviet\DDDBook\DDDBookServiceProvider;
+use Laraviet\LaravelBook\Providers\RouteServiceProvider as BookRouteServiceProvider;
 
 class LaravelBookServiceProvider extends ServiceProvider
 {
@@ -27,10 +29,12 @@ class LaravelBookServiceProvider extends ServiceProvider
         //migrations
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
-        //providers
-        $this->app->register(
-            'Laraviet\LaravelBook\Providers\RouteServiceProvider'
-        );
+        /*
+        |--------------------------------------------------------------------------
+        | Route Providers need on boot() method, others can be in register() method
+        |--------------------------------------------------------------------------
+        */
+        $this->app->register(BookRouteServiceProvider::class);
     }
 
     /**
@@ -40,6 +44,11 @@ class LaravelBookServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        /*
+        |--------------------------------------------------------------------------
+        | 3rd Service Providers
+        |--------------------------------------------------------------------------
+        */
+        $this->app->register(DDDBookServiceProvider::class);
     }
 }
