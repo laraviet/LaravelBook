@@ -9,14 +9,12 @@
     <ul>
         @foreach($books as $book)
             <li>
-                {{ $book->getTitle() }} - {{ $book->getAuthor() }}
-                <a href="{{ route('books.show', [$book->getId()]) }}">show</a>
-                <a href="{{ route('books.edit', [$book->getId()]) }}">edit</a>
-                <form action="{{ route('books.destroy', [$book->getId()]) }}" method="POST">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="submit" value="delete">
-                </form>
+                {{ $book->title }} - {{ $book->author }}
+                <a href="{{ route('books.show', [$book->id]) }}">show</a>
+                <a href="{{ route('books.edit', [$book->id]) }}">edit</a>
+                {!! Form::open(['route' => ['books.destroy', $book->id], 'method' => 'delete']) !!}
+                    {!! Form::submit('delete') !!}
+                {!! Form::close() !!}
             </li>
         @endforeach
     </ul>

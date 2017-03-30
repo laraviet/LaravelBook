@@ -5,9 +5,7 @@
         @endforeach
     </ul>
 @endif
-<form action="{{ route('books.store') }}" method="POST">
-    <input type="hidden" name="_token" value="<?= csrf_token(); ?>">
-    <input type="text" name="title" value="">
-    <input type="text" name="author" value="">
-    <input type="submit" value="Save">
-</form>
+{!! Form::open(['route' => ['books.store'], 'method' => 'post']) !!}
+    @include(Laraviet\LaravelBook\Helpers\Constants::PACKAGE . "::books._form")
+    {!! Form::submit('Create') !!}
+{!! Form::close() !!}

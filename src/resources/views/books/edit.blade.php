@@ -5,10 +5,7 @@
         @endforeach
     </ul>
 @endif
-<form action="{{ route('books.update', [$book->getId()] ) }}" method="POST">
-    <input type="hidden" name="_token" value="<?= csrf_token(); ?>">
-    <input type="hidden" name="_method" value="PATCH">
-    <input type="text" name="title" value="{{ $book->getTitle() }}">
-    <input type="text" name="author" value="{{ $book->getAuthor() }}">
-    <input type="submit" value="Save">
-</form>
+{!! Form::model($book, ['route' => ['books.update', $book->id], 'method' => 'patch']) !!}
+    @include(Laraviet\LaravelBook\Helpers\Constants::PACKAGE . "::books._form")
+    {!! Form::submit('Save') !!}
+{!! Form::close() !!}
