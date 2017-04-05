@@ -36,6 +36,16 @@ class LaravelBookServiceProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
         $this->app->register(BookRouteServiceProvider::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Register menu
+        |--------------------------------------------------------------------------
+        */
+        $frontend_menu = \Menu::get('frontend');
+        $frontend_menu->add('Books', '#');
+        $frontend_menu->item('books')->add('List', ['route' => 'books.index']);
+        $frontend_menu->item('books')->add('Create', ['route' => 'books.create']);
     }
 
     /**

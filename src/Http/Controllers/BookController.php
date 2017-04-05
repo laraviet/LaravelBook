@@ -14,5 +14,6 @@ class BookController extends BaseController
     {
         $this->service = $service;
         $this->package = Constants::PACKAGE;
+        $this->root = "books";
     }
 }

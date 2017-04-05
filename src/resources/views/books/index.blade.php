@@ -4,6 +4,7 @@
     <title>Book Index</title>
 </head>
 <body>
+    {!! $frontend_menu->asUl() !!}
     <h1>Book List</h1>
     <div><a href="{{ route('books.create') }}">Create</a></div>
     <ul>
